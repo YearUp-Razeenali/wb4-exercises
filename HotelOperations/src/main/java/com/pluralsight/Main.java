@@ -4,6 +4,8 @@ public class Main {
     public static void main(String[] args) {
 
         //empTestCases();
+        TestCaseforRoom();
+
 
     }
 
@@ -34,6 +36,61 @@ public class Main {
         System.out.println(employee5.getHoursWorked());
         System.out.println(employee5.getTotalPay());
 
+    }
 
+    public static void TestCaseforRoom(){
+        Room room1 = new Room(2, 150.0, false, false);
+        try {
+            room1.checkIn();
+            System.out.println("Test Case 1: Room checked in successfully.");
+        } catch (Exception e) {
+            System.out.println("Test Case 1 Failed: " + e.getMessage());
+        }
+
+        // Test Case 2: Try to check in when the room is already occupied (Expected to throw Exception)
+        try {
+            room1.checkIn();  // This should fail since the room is already occupied
+        } catch (Exception e) {
+            System.out.println("Test Case 2 Passed: " + e.getMessage());  // Expected: "Cannot check in: The room is occupied"
+        }
+
+        // Test Case 3: Try to check out when the room is occupied (Success case)
+        try {
+            room1.checkOut();
+            System.out.println("Test Case 3: Room checked out successfully.");
+        } catch (Exception e) {
+            System.out.println("Test Case 3 Failed: " + e.getMessage());
+        }
+
+        // Test Case 4: Try to check out when the room is not occupied (Expected to throw Exception)
+        try {
+            room1.checkOut();  // This should fail since the room is not occupied
+        } catch (Exception e) {
+            System.out.println("Test Case 4 Passed: " + e.getMessage());  // Expected: "Cannot check out: The room is not occupied"
+        }
+
+        // Test Case 5: Try to clean a dirty room (Success case)
+        Room room2 = new Room(1, 100.0, false, true);  // Create a new dirty room
+        try {
+            room2.cleanroom();
+            System.out.println("Test Case 5: Room cleaned successfully.");
+        } catch (Exception e) {
+            System.out.println("Test Case 5 Failed: " + e.getMessage());
+        }
+
+        // Test Case 6: Try to clean an already clean room (Expected to throw Exception)
+        try {
+            room2.cleanroom();  // This should fail since the room is already clean
+        } catch (Exception e) {
+            System.out.println("Test Case 6 Passed: " + e.getMessage());  // Expected: "Cannot clean: The room is already clean"
+        }
+
+        // Test Case 7: Try to check in when the room is dirty (Expected to throw Exception)
+        Room room3 = new Room(1, 120.0, false, true);  // Dirty but unoccupied room
+        try {
+            room3.checkIn();  // This should fail since the room is dirty
+        } catch (Exception e) {
+            System.out.println("Test Case 7 Passed: " + e.getMessage());  // Expected: "Cannot check in: The room is dirty"
+        }
     }
 }

@@ -33,16 +33,30 @@ public class Room {
         return ( !this.isDirty() && !this.isOccupied() );
     }
 
-    public void checkIn(){
+    public void checkIn() throws Exception {
+        if(isOccupied()){
+            throw new Exception("Cannot check in: The room is occupied");
+        }
+        if(isDirty()){
+            throw new Exception("Cannot check in: The room is dirty");
+        }
+
         occupied = true;
         dirty = true;
     }
 
-    public void checkOut(){
+    public void checkOut() throws Exception {
+        if (!isOccupied()){
+            throw new Exception("Cannot check out: The room is not occupied");
+        }
+
         occupied = false;
     }
 
-    public void cleanroom(){
+    public void cleanroom() throws Exception {
+        if (!isDirty()){
+            throw new Exception("Cannot clean: The room is already clean");
+        }
         dirty = false;
     }
 
