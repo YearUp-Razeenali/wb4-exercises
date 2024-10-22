@@ -1,13 +1,13 @@
 package com.pluralsight;
 
 public class Employees {
-    private String employeeID;
+    private int employeeID;
     private String name;
     private String department;
     private double payRate;
     private double hoursWorked;
 
-    public Employees(String employeeID, String name, String department, double payRate, double hoursWorks) {
+    public Employees(int employeeID, String name, String department, double payRate, double hoursWorks) {
         this.employeeID = employeeID;
         this.name = name;
         this.department = department;
@@ -24,22 +24,26 @@ public class Employees {
     }
 
     public double getTotalPay(){
-        return (this.getRegularHours() * this.payRate) + (this.getOvertimeHours() * (1.5 * this.payRate));
+        return (getRegularHours() * getPayRate()) + (getOvertimeHours() * (1.5 * getPayRate()));
     }
 
     public double getRegularHours(){
-        if(this.hoursWorked <= 40){
-            return this.hoursWorked;
+        if(getHoursWorked() < 40){
+            return getHoursWorked();
         }
         //if greater than 40 then returns 40
         return 40;
     }
 
     public double getOvertimeHours(){
-        if(this.hoursWorked > 40){
-            return this.hoursWorked - 40;
+        if(getHoursWorked() > 40){
+            return getHoursWorked() - 40;
         }
         //means no overtime
         return 0;
+    }
+
+    public double punchTimeCard(double timeIn, double timeOut){
+        return this.hoursWorked += timeOut - timeIn;
     }
 }
