@@ -1,11 +1,18 @@
 package com.pluralsight;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 public class Employees {
     private int employeeID;
     private String name;
     private String department;
     private double payRate;
     private double hoursWorked;
+
+    private LocalDateTime timeIn;
+    private LocalDateTime timeOut;
+
 
     public Employees(int employeeID, String name, String department, double payRate, double hoursWorks) {
         this.employeeID = employeeID;
@@ -45,5 +52,23 @@ public class Employees {
 
     public double punchTimeCard(double timeIn, double timeOut){
         return this.hoursWorked += timeOut - timeIn;
+    }
+
+    public void punchIn(){
+        this.timeIn = LocalDateTime.now();
+    }
+
+    public void punchOut(){
+        this.timeOut = LocalDateTime.now();
+    }
+
+    public double punchTimeCard(){
+        if (timeIn == null || timeOut == null) {
+            System.out.println("Error: TimeIn or TimeOut is not set.");
+            return 0;
+        }
+        Duration duration = Duration.between(timeIn,timeOut);
+        double hours = duration.toMinutes() / 60.0;
+        return this.hoursWorked += hours;
     }
 }
