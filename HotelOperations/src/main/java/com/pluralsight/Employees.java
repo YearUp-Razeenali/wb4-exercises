@@ -10,8 +10,8 @@ public class Employees {
     private double payRate;
     private double hoursWorked;
 
-    private LocalDateTime timeIn;
-    private LocalDateTime timeOut;
+    LocalDateTime timeIn;
+    LocalDateTime timeOut;
 
 
     public Employees(int employeeID, String name, String department, double payRate, double hoursWorks) {
