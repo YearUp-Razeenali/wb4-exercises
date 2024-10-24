@@ -6,6 +6,5 @@ public class Main {
 
         System.out.println(NameFormatter.format("dr.", "Razeen", "B", "Ali", "Phd"));
 
-        System.out.println("Hello world!");
     }
 }
